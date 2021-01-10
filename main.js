@@ -1,31 +1,47 @@
 
-let ToDo = [
-  "trilero",
-  "myTryLaravel",
-  "trigger css animations from js",
-  "sequence CSS animations in chain",
-  "hack money-maker-machine",
-  "finally rule the world",
-];
-
-
+//localStorge.setItem('item')
+//getItem
+//removeItem
+//clear
+//storageAvailable('sessionStorage')
+//create function populate storage
+//ToDo.onchange = populateStorage
+//window.addEventListener('storage', function(e) {
+    //document.querySelector('.my-storage').textContent = JSON.stringify(e.storageArea);
+    //});
+    
+    let ToDo = [
+        "trilero",
+        "trigger css animations from js",
+        "sequence CSS animations in chain",
+        "API favourite Movies",
+        "myTryLaravel",
+        "Kata Gilded Rose",
+        "hack money-maker-machine",
+        "finally rule the world",
+    ];
+    
+    
 const list = document.getElementById("list");
 
 
 function showList(ToDo) {
-
+    
     document.getElementById("list").innerHTML = "";
+    localStorage.clear();
 
     for (let i = 0; i < ToDo.length; i++) {
+        localStorage.setItem([i], ToDo[i]);
         list.innerHTML += `
-            <li class="buttons">
-            <span> ${ToDo[i]} </span> 
+        <li class="buttons">
+        <span> ${ToDo[i]} </span> 
             <div>
-                <button type="button" onclick="deleteItem(${i})">dilit</button>
-                <button type="button" onclick="editItem(${i})">idit</button>
+            <button type="button" onclick="deleteItem(${i})">Delete</button>
+            <button type="button" onclick="editItem(${i})">Edit</button>
             </div>
             </li>
-        `;
+            `;
+            ToDo.onchange = localStorage.setItem([i], ToDo[i]);
     }
     
 //   for (let i = 0; i < ToDo.length; i++) {
@@ -41,6 +57,9 @@ function showList(ToDo) {
 showList(ToDo);
 
 
+console.log(localStorage);
+
+
 function resolveAfterHalfSec () {
     return new Promise(resolve => {
         setTimeout (() => {
@@ -54,6 +73,9 @@ async function deleteItem(indiceArray) {
 
     await resolveAfterHalfSec();
     ToDo.splice(indiceArray, 1);
+    let key = localStorage.key;
+    key = indiceArray; 
+    localStorage.removeItem(key)
     showList(ToDo);
    
 }
@@ -61,7 +83,7 @@ async function deleteItem(indiceArray) {
 function addListItem() {
 
     const newItemInput = document.querySelector('input[name="newListElement"]');
-    console.log(newItemInput);
+    
     const newItem = newItemInput.value;
     ToDo.push(newItem);
     showList(ToDo);
@@ -70,9 +92,12 @@ function addListItem() {
 function editItem (indiceArray) {
 
     const updatedItemInput = document.querySelector('input[name="newListElement"]');
-    console.log(updatedItemInput);
+    
     const updatedItem = updatedItemInput.value;
     ToDo.splice(indiceArray, 1, updatedItem);
     showList(ToDo);
     
 }
+
+        
+
