@@ -1,7 +1,6 @@
 
 let ToDo = [
   "trilero",
-  "async/promises",
   "myTryLaravel",
   "trigger css animations from js",
   "sequence CSS animations in chain",
@@ -9,7 +8,7 @@ let ToDo = [
   "finally rule the world",
 ];
 
-//const container = document.getElementById("list");
+
 const list = document.getElementById("list");
 
 
@@ -39,35 +38,37 @@ function showList(ToDo) {
 //   }
   //return list;
 
-  //locationReload(), set Timeout
+ 
 
   
 }
 
-console.log(ToDo);
+
 showList(ToDo);
+//location.reload();
 
 
 
 function resolveAfterHalfSec () {
     return new Promise(resolve => {
         setTimeout (() => {
-            resolve('resolved');
+            resolve('newToDo');
         }, 500);
     });
 }
 
 async function deleteItem(indiceArray) {
     console.log(ToDo);
+    console.log(indiceArray);
 
-    await resolveAfterHalfSec(ToDo.splice(indiceArray, 1));
-    console.log(ToDo);
-    
-    location.reload();
+    await resolveAfterHalfSec();
+    newToDo = ToDo.splice(indiceArray, 1)
+    showList(ToDo);
+    //return result;
 }
 
 
-console.log(ToDo);
+
 
 function addListItem() {
   //pillar el input de form

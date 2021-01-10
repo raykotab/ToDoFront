@@ -1,0 +1,147 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Custom promise example</title>
+  </head>
+  <body>
+    <script>
+
+        //ASYNC
+
+        // async function hello() {
+            
+        //     return "Hello you";
+        // };
+
+        // As Async Function EXPRESSION
+        // let hello = async () => {
+        //     return "Hello"
+        // };
+
+        // //hello().then((value) => console.log(value));
+        // hello().then(console.log);
+
+
+        //WITH AWAIT
+
+        // async function hello() {
+        //   return greeting = await Promise.resolve('Hello');
+          
+        // };
+
+        // hello().then(alert);
+
+        // fetch('img/coffee.jpg')
+        // .then(response => {
+        //   if (!response.ok) {
+        //     throw new Error(`HTTP error! status: ${response.status}`);
+        //   } else {
+        //     return response.blob();
+        //   }
+        // })
+        // .then(myBlob => {
+        //   let objectURL = URL.createObjectURL(myBlob);
+        //   let image = document.createElement('img');
+        //   image.src = objectURL;
+        //   document.body.appendChild(image);
+        // })
+        // .catch(e => {
+        //   console.log('There has been a problem with your fetch operation: ' + e.message);
+        // });
+
+        //FETCH REFACTORED
+
+        // async function bringMedia() {
+        //   let response = await fetch('img/coffee.jpg');
+
+        //   if (!response.ok) {
+        //     throw new Error(`HTTP error! status: ${response.status}`);
+        //   } else {
+        //     let mediaBlob = await response.blob();
+
+        //     let objectURL = URL.createObjectURL(mediaBlob);
+        //     let image = document.createElement('img');
+        //     image.src = objectURL;
+        //     document.body.appendChild(image);
+        //   }
+        // }
+
+        // bringMedia()
+        // .catch(e => {
+        //   console.log('There has been a problem with your fetch operation: ' + e.message);
+        // });
+
+
+        //  HYBRID PROMISES-AWAIT
+
+        // async function bringMedia() {
+        //   let response = await fetch('img/coffee.jpg');
+
+        //   if (!response.ok) {
+        //     throw new Error(`HTTP error! status: ${response.status}`);
+        //   } else {
+        //     return await response.blob();
+        //   }
+        // }
+        
+        // bringMedia().then((mediaBlob) => {
+        //   let objectURL = URL.createObjectURL(mediaBlob);
+        //   let image = document.createElement('img');
+        //   image.src = objectURL;
+        //   document.body.appendChild(image);
+
+        // }).catch((e) => console.log(e));
+        
+
+        //PROMISES EXAMPLE AS ASYNC-AWAIT
+
+      async function fetchAndDecode(url, type) {
+        let response = await fetch(url);
+
+        let content;
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        } else {
+          if(type === 'blob') {
+            content = await response.blob();
+          } else if(type === 'text') {
+            content = await response.text();
+          }
+
+          return content;
+        }
+
+      }
+
+      async function displayContent() {
+        let coffee = fetchAndDecode('img/coffee.jpg', 'blob');
+        let tea = fetchAndDecode('img/tea.jpg', 'blob');
+        let description = fetchAndDecode('description.txt', 'text');
+
+        let values = await Promise.all([coffee, tea, description]);
+
+        let objectURL1 = URL.createObjectURL(values[0]);
+        let objectURL2 = URL.createObjectURL(values[1]);
+        let descText = values[2];
+
+        let image1 = document.createElement('img');
+        let image2 = document.createElement('img');
+        image1.src = objectURL1;
+        image2.src = objectURL2;
+        document.body.appendChild(image1);
+        document.body.appendChild(image2);
+
+        let para = document.createElement('p');
+        para.textContent = descText;
+        document.body.appendChild(para);
+      }
+
+      displayContent()
+      .catch((e) =>
+        console.log(e)
+      );
+
+      </script>
+  </body>
+</html>
