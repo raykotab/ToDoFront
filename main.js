@@ -14,6 +14,8 @@ const list = document.getElementById("list");
 
 function showList(ToDo) {
 
+    document.getElementById("list").innerHTML = "";
+
     for (let i = 0; i < ToDo.length; i++) {
         list.innerHTML += `
             <li class="buttons">
@@ -39,13 +41,13 @@ function showList(ToDo) {
   //return list;
 
  
-
+   
   
 }
 
 
+
 showList(ToDo);
-//location.reload();
 
 
 
@@ -62,8 +64,11 @@ async function deleteItem(indiceArray) {
     console.log(indiceArray);
 
     await resolveAfterHalfSec();
-    newToDo = ToDo.splice(indiceArray, 1)
+    //let time = await location.reload();
+    ToDo.splice(indiceArray, 1);
+    //location.reload();
     showList(ToDo);
+    return;
     //return result;
 }
 
