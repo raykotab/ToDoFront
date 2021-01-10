@@ -37,7 +37,6 @@ function showList(ToDo) {
 //     list.appendChild(listElement);
 //     container.appendChild(list);
 //   }
-  
 }
 showList(ToDo);
 
@@ -56,7 +55,7 @@ async function deleteItem(indiceArray) {
     await resolveAfterHalfSec();
     ToDo.splice(indiceArray, 1);
     showList(ToDo);
-    return;
+   
 }
 
 function addListItem() {
@@ -66,4 +65,14 @@ function addListItem() {
     const newItem = newItemInput.value;
     ToDo.push(newItem);
     showList(ToDo);
+}
+
+function editItem (indiceArray) {
+
+    const updatedItemInput = document.querySelector('input[name="newListElement"]');
+    console.log(updatedItemInput);
+    const updatedItem = updatedItemInput.value;
+    ToDo.splice(indiceArray, 1, updatedItem);
+    showList(ToDo);
+    
 }
