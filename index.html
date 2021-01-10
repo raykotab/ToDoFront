@@ -14,6 +14,11 @@
                 Lo que aún me queda por estudiar 
             </h1>
         </div>
+        <div>
+            <h3>
+                This is a LocalStorage front-End (vanilla Js) CRUD
+            </h3>
+        </div>
     </header>
     <main>
         <section id="listContainer">  
@@ -21,17 +26,22 @@
                 <ul id="list">
                     
                 </ul>
-            </div>
-
-            
+            </div>   
         </section>
         <section id="listModify">
-            <form>
-                <label for="newListElement">Add New Item To List</label>
-                <intput type="text" id="newListElement" name="newListElement"></intput>
-                <button type="button">submit</button>
+            <form id="form">
+                <div id="input">
+                    <label for="newListElement">Add New</label>
+                    <input type="text" id="newListElement" name="newListElement"
+                     placeholder="Add new"
+                     size="30"></intput>
+                </div>
+                <div id="submitButton">
+                    <button type="button" id="createItem" onclick="addListItem()">submit</button>
+                </div>
             </form>
         </section>
+      
     </main>
     <script src="main.js"></script>
     <!-- <script src="arraySplice.js"></script> -->

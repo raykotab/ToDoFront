@@ -28,7 +28,6 @@ function showList(ToDo) {
         `;
     }
     
- 
 //   for (let i = 0; i < ToDo.length; i++) {
 //     let listElement = document.createElement("li");
 //     listElement.appendChild(document.createTextNode(ToDo[i]));
@@ -38,17 +37,9 @@ function showList(ToDo) {
 //     list.appendChild(listElement);
 //     container.appendChild(list);
 //   }
-  //return list;
-
- 
-   
   
 }
-
-
-
 showList(ToDo);
-
 
 
 function resolveAfterHalfSec () {
@@ -59,24 +50,19 @@ function resolveAfterHalfSec () {
     });
 }
 
+
 async function deleteItem(indiceArray) {
-    console.log(ToDo);
-    console.log(indiceArray);
 
     await resolveAfterHalfSec();
-    //let time = await location.reload();
     ToDo.splice(indiceArray, 1);
-    //location.reload();
     showList(ToDo);
     return;
-    //return result;
 }
 
-
-
-
 function addListItem() {
-  //pillar el input de form
-  //asociarlo a una variable string
-  //pushearlo al array
+
+    const newItemInput = document.querySelector('input[name="newListElement"]');
+    const newItem = newItemInput.nodeValue;
+    ToDo.push(newItem);
+   showList(ToDo);
 }
