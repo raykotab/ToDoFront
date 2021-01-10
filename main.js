@@ -62,7 +62,8 @@ async function deleteItem(indiceArray) {
 function addListItem() {
 
     const newItemInput = document.querySelector('input[name="newListElement"]');
-    const newItem = newItemInput.nodeValue;
+    console.log(newItemInput);
+    const newItem = newItemInput.value;
     ToDo.push(newItem);
-   showList(ToDo);
+    showList(ToDo);
 }
