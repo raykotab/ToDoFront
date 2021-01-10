@@ -3,16 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="style.css">
     <title>ToDoFront</title>
 </head>
 <body>
+    
     <header>
-        <h1> Lo que aún me queda por estudiar </h1>
+        <div>
+            <h1> Vanilla Js CRUD on Local: </br> 
+                Lo que aún me queda por estudiar 
+            </h1>
+        </div>
     </header>
-    <section id="list">
-       
-    </section>
+    <main>
+        <section id="listContainer">  
+            <div id="listContainerDiv">
+                <ul id="list">
+                    
+                </ul>
+            </div>
+
+            
+        </section>
+        <section id="listModify">
+            <form>
+                <label for="newListElement">Add New Item To List</label>
+                <intput type="text" id="newListElement" name="newListElement"></intput>
+                <button type="button">submit</button>
+            </form>
+        </section>
+    </main>
     <script src="main.js"></script>
 </body>
 </html>
